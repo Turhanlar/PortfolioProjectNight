@@ -1,0 +1,22 @@
+﻿@model PortfolioProjectNight.Models.SocialMedia
+@{
+    ViewBag.Title = "CreateSocialMedia";
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+
+<h2 class="mb-4" style="text-align:center">Yeni Hesap Ekleme Sayfası</h2>
+
+<form method="post">
+    <label>Hesap Adı</label>
+    @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+    <br />
+    <label>Url</label>
+    @Html.TextBoxFor(x => x.Url, new { @class = "form-control" })
+    <br />
+    <label>İkon</label>
+    @Html.TextAreaFor(x => x.Icon, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-dark">Hesap Ekleme İşlemini Gerçekleştir</button>
+</form>
+
+

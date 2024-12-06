@@ -1,0 +1,61 @@
+﻿﻿@model List<PortfolioProjectNight.Models.Contact>
+
+@{
+    ViewBag.Title = "Inbox";
+    Layout = "~/Views/Admin/Index.cshtml";
+    int count = 0;
+    string subjectColor = "";
+}
+
+<h2 class="mb-4" style="text-align:center">Tüm Mesajlar</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Gönderen</th>
+        <th>Tarih</th>
+        <th>Konu</th>
+        <th>Durum</th>
+        <th>Mesajı Aç</th>
+        <th>Mesajı Sil</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        count++;
+
+        switch (@item.Subject)
+        {
+            case "İş Görüşmesi": subjectColor = "#FFF5CD"; break;
+            case "Öneri": subjectColor = "#BCF2F6"; break;
+            case "Proje Talebi": subjectColor = "#00FF00"; break;
+            case "Referans": subjectColor = "#0000FF"; break;
+            case "Toplantı": subjectColor = "#96CEB4"; break;
+            case "Sorun Bildirimi": subjectColor = "#FCCD2A"; break;
+            case "Teşekkür": subjectColor = "#D91656"; break;
+            case "Şikayet": subjectColor = "#FF0000"; break;
+            case "Staj Talebi": subjectColor = "#FF6600"; break;
+            default: subjectColor = "#FFDC7F"; break;
+        }
+        <tr>
+            <td>@count</td>
+            <td>@item.NameSurname</td>
+            <td>@item.SendDate</td>
+            <td style="background-color:@subjectColor">@item.Subject</td>
+
+            @if (item.IsRead == false)
+            {
+                <td><a href="/Message/ChangeMessageStatusToTrue/@item.Contactid" class="btn btn-info">Okundu Olarak İşaretle</a></td>
+            }
+            else
+            {
+                <td><a href="/Message/ChangeMessageStatusToFalse/@item.Contactid" class="btn btn-dark">Okunmadı Olarak İşaretle</a></td>
+            }
+
+            <td><a href="/Message/MessageDetails/@item.Contactid" class="btn btn-warning">Mesajı Aç</a></td>
+            <td><a href="/Message/DeleteMessage/@item.Contactid" class="btn btn-danger">Mesajı Sil</a></td>
+        </tr>
+    }
+
+</table>
+

@@ -1,0 +1,17 @@
+﻿﻿@model List<PortfolioProjectNight.Models.Category>
+
+@{
+    ViewBag.Title = "CreateCategory";
+    Layout = "~/Views/Admin/Index.cshtml";
+}
+
+<h2 class="mb-4" style="text-align:center">Kategori Ekleme Sayfası</h2>
+
+<form method="post">
+
+    <label>Kategori Adı</label>
+    <input class="form-control" name="CategoryName" placeholder="Eklenecek Kategori Adını Giriniz">
+    <br />
+    <button class="btn btn-dark">Kategoriyi Ekle</button>
+
+</form>

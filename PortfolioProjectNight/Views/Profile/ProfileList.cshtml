@@ -1,0 +1,41 @@
+﻿﻿@model  List<PortfolioProjectNight.Models.Profile>
+
+@{
+    ViewBag.Title = "ProfileList";
+    Layout = "~/Views/Admin/Index.cshtml";
+    int idNumber = 0;
+}
+
+<h2 class="mb-4" style="text-align:center">Profilim</h2>
+
+<table class="table table-bordered col-md-12">
+    <tr>
+        <th>ID</th>
+        <th>Doğum Tarihi</th>
+        <th  style="width: 30px;">E Mail</th>
+        <th>Telefon</th>
+        <th>Github</th>
+        <th>Adres</th>
+        <th>Başlık</th>
+        <th style="width: 300px;">Açıklama</th>
+        <th style="width: 50px;">Resim Yolu</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        idNumber = item.Profiled;
+        <tr>
+            <td>@item.Profiled</td>
+            <td>@item.Birthdate</td>
+            <td>@item.Email</td>
+            <td>@item.Phone</td>
+            <td>@item.GitHub</td>
+            <td>@item.Address</td>
+            <td>@item.Title</td>
+            <td style="width: 150px;">@item.Description</td>
+            <td style="width: 50px;">@item.ImageUrl.Substring(0,50)...</td>
+        </tr>
+    }
+</table>
+
+<a href="/Profile/UpdateProfile/@idNumber" class="btn btn-dark">Profil Güncelle</a>
